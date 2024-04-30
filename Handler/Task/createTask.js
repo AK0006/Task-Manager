@@ -4,16 +4,14 @@ const { ProfilingLevel } = require('mongodb');
 
 
 exports.create_task = async (request, h) => {
+    // console.log(request.auth.credentials);
     try {
-        const ProfileModel = await Profile.findOne({
-            _id: request.payload.Profile_id
-        });
+        const ProfileModel = request.auth.credentials;
         console.log(ProfileModel);
 
-        const name =  validate.user;
-        console.log(name);
+        const name =  request.auth.credentials.user.Username;
 
-        const data = request.payload;
+        const data = Object.assign(request.payload, {CreatedBy: name});
         const result = await Task.create(data);
         return result;
     } catch (error) {

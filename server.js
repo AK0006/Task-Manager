@@ -37,7 +37,7 @@ const init = async () => {
         // console.log(session.user);
         if(session && session.valid){
             const profileModel = await profile.findOne({_id: session.user.Profile_id})
-            console.log(profileModel);
+            // console.log(profileModel);
             return {
                 isValid: true,
                 credentials: {profile: profileModel, user: session.user}

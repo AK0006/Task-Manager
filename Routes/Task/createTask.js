@@ -8,7 +8,7 @@ module.exports = {
     method: 'POST',
     path: '/Task/create',
     options: {
-        auth: false,
+        auth: 'jwt',
         validate: taskCreate
     },
     handler: create_handler.create_task

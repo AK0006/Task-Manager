@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema({
     CreatedBy: {type: String, required: true},
     AssignedTo: {type: String, required: true},
     startDate: {type: Date, immutable: true, default: Date.now()},
-    endDate: {type: Date, default: Date.now()},
+    endDate: {type: Date, default: Date.now()}
 }, {timestamps: {
     createdAt: 'create_at',
     updatedAt: false

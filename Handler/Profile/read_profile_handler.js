@@ -1,7 +1,7 @@
 const User = require('../../Schema/Profile');
 
 exports.get_all = async (request, h) => {
-        console.log(request.auth.credentials.user.Username);
+        console.log(request);
         const readAll = await User.find();
         return readAll;
 }

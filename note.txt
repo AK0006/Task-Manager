@@ -1,0 +1,9 @@
+        const data = {
+            firstname: request.payload.firstname,
+            lastname: request.payload.lastname,
+            Age: request.payload.Age,
+            Mobilenumber: request.payload.Mobilenumber,
+            Email: request.payload.Email,
+            Password: hashPassword,
+            Createdat: request.payload.Createdat
+        }

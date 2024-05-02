@@ -27,25 +27,38 @@ const init = async () => {
     });
 
     const validate = async (artifacts, request, h) => {
-        // const payload = artifacts.decoded.payload;
-        // (payload);
-        const redis_reply = await redis.get(artifacts.decoded.payload.id)
-        if(!redis_reply){
-            return {isValid: false}
-        }
-        const session = JSON.parse(redis_reply);
-        // console.log(session.user);
-        if(session && session.valid){
-            const profileModel = await profile.findOne({_id: session.user.Profile_id})
-            // console.log(profileModel);
-            return {
-                isValid: true,
-                credentials: {profile: profileModel, user: session.user}
+        try {
+            const payload = artifacts.decoded.payload;
+            console.log(payload);
+            const redis_reply = await redis.get(artifacts.decoded.payload.id)
+            if(!redis_reply){
+                return {isValid: false}
             }
-        }else {
-            return {isValid: false}
+            const session = JSON.parse(redis_reply);
+            console.log(session);
+            if(session && session.valid){
+                const profileModel = await profile.findOne({_id: session.user.Profile_id})
+                console.log(profileModel);
+                return {
+                    isValid: true,
+                    credentials: {profile: profileModel, user: session.user}
+                }
+            }else {
+                return {isValid: false}
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
+
+    await server.register(Jwt);
+    server.auth.strategy('jwt', 'jwt', {
+        keys: jwt_privte_key,
+        verify: false,
+        validate
+    });
+
+    server.auth.default('jwt');
 
     server.route  ({
         method: 'GET',
@@ -61,13 +74,14 @@ const init = async () => {
             version: pack.version,
         },
         securityDefinitions: {
-            Jwt: {
+            Bearer: {
                 type: 'apiKey',
                 name: 'Authorization',
-                in: 'header'
+                in: 'header',
+                'x-keyPrefix': 'Bearer'
             }
         },
-        security: [{ Jwt: [] }],
+        security: [{ Bearer: [] }],
         schemes: ['http', 'https']
     }
 
@@ -78,18 +92,11 @@ const init = async () => {
             plugin: HapiSwagger,
             options: swaggerOptions
         }
-    ])
+    ]);
 
 
 
-    await server.register(Jwt);
-    server.auth.strategy('jwt', 'jwt', {
-        keys: jwt_privte_key,
-        verify: false,
-        validate
-    });
 
-    server.auth.default('jwt');
 
     server.route(require('./Routes/Profile_route/add_profile_route'));
     server.route(require('./Routes/Profile_route/delete_profile_route'));

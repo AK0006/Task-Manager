@@ -1,7 +1,13 @@
-const User = require('../../Schema/Profile');
+const Profile = require('../../Schema/Profile');
 
-exports.get_all = async (request, h) => {
-        const readAll = await User.find();
-        console.log(readAll);
-        return readAll;
+const get_all= async (request, h) => {
+        try {
+                const readAll = await Profile.find();
+                console.log(readAll);
+                return readAll;
+        } catch (error) {
+                return error;
+        }
 }
+
+module.exports = get_all;

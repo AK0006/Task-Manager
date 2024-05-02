@@ -12,5 +12,5 @@ module.exports = {
         tags: ['api'],
         validate: taskCreate
     },
-    handler: create_handler.create_task
+    handler: create_handler
 }

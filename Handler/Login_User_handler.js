@@ -19,9 +19,9 @@ exports.login_User = async (request, h) => {
         if(!passwordMatch){
             return Boom.badRequest("Invalid Password")
         }
-        console.log(user);
+        // console.log(user);
         delete user.password;
-        console.log('Object after deleting',user);
+        // console.log('Object after deleting',user);
         
         const session = {
             valid: true,
@@ -31,9 +31,9 @@ exports.login_User = async (request, h) => {
         const token = await create_token(session);
         console.log(token);
 
-        console.log(session.id);
+        // console.log(session.id);
         const redis_store = await redis.set(session.id, JSON.stringify(session));
-        console.log(redis_store);
+        // console.log(redis_store);
 
         return {
             statucode: 200,

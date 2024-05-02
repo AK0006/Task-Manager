@@ -1,7 +1,7 @@
 const { request } = require("http");
 const Profile = require('../../Schema/Profile');
 const Bcrypt = require('bcrypt');
-const { payload } = require("../../Validation/add_profile_Joi");
+const { payload } = require("../../Validation/Profile/add_profile_Joi");
 const { object } = require("joi");
 
 

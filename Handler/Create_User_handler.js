@@ -27,10 +27,10 @@ exports.create_User = async (request, h) => {
     const hashe = await Bcrypt.hash(password.toString(), salt);
     const userData = Object.assign({}, request.payload, {password: hashe, Username});
     const user = await User.create(userData);
-    console.log(user);
+    // console.log(user);
     return user
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return "Unable to fetch the data"
     }
 }

@@ -6,9 +6,10 @@ const taskCreate = require('../../Validation/Task/create_Task_Joi')
 
 module.exports = {
     method: 'POST',
-    path: '/Task/create',
+    path: '/task/create',
     options: {
         auth: 'jwt',
+        tags: ['api'],
         validate: taskCreate
     },
     handler: create_handler.create_task

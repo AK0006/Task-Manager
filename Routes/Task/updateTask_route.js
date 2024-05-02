@@ -6,6 +6,7 @@ module.exports = {
     path: '/task/update/{id}',
     handler: update_handler.Update_task,
     options: {
-        auth: false
+        auth: 'jwt',
+        tags: ['api']
     }
 }

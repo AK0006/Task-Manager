@@ -7,6 +7,7 @@ module.exports = {
     path: '/profile',
     handler: read.get_all,
     options: {
-        auth: 'jwt'
+        auth: 'jwt',
+        tags: ['api']
     }
 };

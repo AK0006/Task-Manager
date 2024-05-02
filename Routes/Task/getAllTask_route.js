@@ -7,6 +7,7 @@ module.exports = {
     path: '/task/all',
     handler: getAllTask_handler.getAllTask,
     options: {
-        auth: false
+        auth: 'jwt',
+        tags: ['api']
     }
 }

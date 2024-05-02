@@ -6,15 +6,16 @@ const { ProfilingLevel } = require('mongodb');
 exports.create_task = async (request, h) => {
     // console.log(request.auth.credentials);
     try {
-        const ProfileModel = request.auth.credentials;
-        console.log(ProfileModel);
-
-        const name =  request.auth.credentials.user.Username;
-
-        const data = Object.assign(request.payload, {CreatedBy: name});
+        // const profile = request.auth.credentials.profile._id;
+        // console.log(profile);
+        const name = request.auth.credentials.user.Username;
+        const created_id = request.auth.credentials.profile._id;
+        
+        const data = Object.assign(request.payload, {CreatedBy: name, CreatedBy_id: created_id});
         const result = await Task.create(data);
         return result;
     } catch (error) {
+        console.log(error);
         return "Unable to fetch data";
     }
 }

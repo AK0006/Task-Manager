@@ -15,7 +15,7 @@ const { verify } = require('jsonwebtoken');
 const { validate } = require('./Schema/Profile');
 const User = require('./Schema/User');
 const redis = require('./util/redis');
-const profile = require('./Schema/Profile')
+const profile = require('./Schema/Profile');
 
 
 mongoose.connect("mongodb://localhost/Task_Manager");
@@ -28,7 +28,7 @@ const init = async () => {
 
     const validate = async (artifacts, request, h) => {
         // const payload = artifacts.decoded.payload;
-        // console.log(payload);
+        // (payload);
         const redis_reply = await redis.get(artifacts.decoded.payload.id)
         if(!redis_reply){
             return {isValid: false}
@@ -54,6 +54,33 @@ const init = async () => {
             return "Welcome"
         }
     });
+
+    const swaggerOptions = {
+        info: {
+            title:'Task Manager',
+            version: pack.version,
+        },
+        securityDefinitions: {
+            Jwt: {
+                type: 'apiKey',
+                name: 'Authorization',
+                in: 'header'
+            }
+        },
+        security: [{ Jwt: [] }],
+        schemes: ['http', 'https']
+    }
+
+    await server.register([
+        Inert,
+        Vision,
+        {
+            plugin: HapiSwagger,
+            options: swaggerOptions
+        }
+    ])
+
+
 
     await server.register(Jwt);
     server.auth.strategy('jwt', 'jwt', {

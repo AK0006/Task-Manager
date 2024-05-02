@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
 const Profile = require('./Profile');
-const { required } = require('joi');
+const { required, optional } = require('joi');
 
 const taskSchema = new mongoose.Schema({
-    Profile_id: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'ProfileSchema'
-    },
-    Title: {type: String, required: true},
+    Title: {type: String, optional: true},
     Description: {type: String, required: true},
     Status: {type: String, required: true},
     CreatedBy: {type: String, required: true},
+    CreatedBy_id: {type: String, required: true},
     AssignedTo: {type: String, required: true},
-    startDate: {type: Date, immutable: true, default: Date.now()},
+    startDate: {type: Date, default: Date.now()},
     endDate: {type: Date, default: Date.now()}
 }, {timestamps: {
     createdAt: 'create_at',

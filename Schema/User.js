@@ -1,10 +1,10 @@
-const { ref } = require('joi');
+const { ref, required } = require('joi');
 const { MongoServerClosedError } = require('mongodb');
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     Username: String,
-    Role: String,
+    role: [String],
     password: String,
     Profile_id: {
         type: mongoose.Schema.Types.ObjectId,

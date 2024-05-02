@@ -7,6 +7,7 @@ module.exports = {
     path: '/profile',
     handler: read,
     options: {
+        plugins: {'hapiAuthorization': {role: 'ADMIN'}},
         auth: 'jwt',
         tags: ['api']
     }

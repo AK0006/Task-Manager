@@ -7,6 +7,7 @@ module.exports ={
     handler: create.create_User,
     options: {
         validate: user_validate,
+        auth: false,
         tags: ['api']
     }
 }

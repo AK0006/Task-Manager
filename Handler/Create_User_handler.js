@@ -30,7 +30,7 @@ exports.create_User = async (request, h) => {
     // console.log(user);
     return user
     } catch (error) {
-        // console.log(error);
+        console.log(error);
         return "Unable to fetch the data"
     }
 }

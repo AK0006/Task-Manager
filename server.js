@@ -26,22 +26,22 @@ const init = async () => {
         host: 'localhost'
     });
 
-    const validate = async (artifacts, request, h) => {
+    const validate = async (artifacts, request, h, callback) => {
         try {
             const payload = artifacts.decoded.payload;
-            console.log(payload);
+            // console.log(payload);
             const redis_reply = await redis.get(artifacts.decoded.payload.id)
             if(!redis_reply){
                 return {isValid: false}
             }
             const session = JSON.parse(redis_reply);
-            console.log(session);
+            // console.log(session);
             if(session && session.valid){
                 const profileModel = await profile.findOne({_id: session.user.Profile_id})
-                console.log(profileModel);
+                // console.log(profileModel);
                 return {
                     isValid: true,
-                    credentials: {profile: profileModel, user: session.user}
+                    credentials: {profile: profileModel, user: session.user, role: session.user.role}
                 }
             }else {
                 return {isValid: false}
@@ -94,6 +94,16 @@ const init = async () => {
         }
     ]);
 
+    let plugins = [
+        {
+            plugin: require('hapi-authorization'),
+            options: {
+                roles: ['ADMIN', 'USER']
+            }
+        }
+    ]
+
+    await server.register(plugins);
 
 
 

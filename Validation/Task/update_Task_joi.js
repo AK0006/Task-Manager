@@ -3,7 +3,7 @@ const { payload } = require('../User/Login_User.Joi');
 
 module.exports = {
     params: Joi.object({
-        id: Joi.string().required(),
+        id: Joi.string().required()
 }),
 payload: Joi.object({
     Title: Joi.string().max(100).required(),

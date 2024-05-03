@@ -120,6 +120,12 @@ const init = async () => {
     server.route(require('./Routes/Task/getAllTask_route'));
     server.route(require('./Routes/Task/deleteTask_route'));
     server.route(require('./Routes/Task/getOneTask_route'));
+    //Comment
+    server.route(require('./Routes/Comment/addComment_route'));
+    server.route(require('./Routes/Comment/updateComment_route'));
+    server.route(require('./Routes/Comment/deleteComment_routes'));
+    server.route(require('./Routes/Comment/getOneComment_route'));
+    server.route(require('./Routes/Comment/getComment_route'));
 
    await server.start();
     console.log('Server is running on ', server.info.uri);

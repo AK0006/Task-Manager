@@ -14,7 +14,7 @@ const taskSchema = new mongoose.Schema({
     endDate: {type: Date, default: Date.now()}
 }, {timestamps: {
     createdAt: 'create_at',
-    updatedAt: false
+    updatedAt: 'update_at'
 }}
 );
 

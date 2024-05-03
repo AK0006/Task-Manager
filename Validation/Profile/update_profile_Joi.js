@@ -11,6 +11,5 @@ module.exports = ({
         Mobilenumber: Joi.number().min(10).required(),
         Email: Joi.string(). email(). lowercase().required(),
         Password: Joi.string().min(6).required(),
-        Createdat: Joi.string().required()
     })
 })

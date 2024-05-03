@@ -4,7 +4,7 @@ const vald_user = require('../../Validation/Profile/update_profile_Joi');
 
 module.exports = {
     method: 'PUT',
-    path: '/profile/{id}',
+    path: '/profile/update/{id}',
     options: {
         validate: vald_user,
         auth: 'jwt',

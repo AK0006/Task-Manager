@@ -98,7 +98,7 @@ const init = async () => {
         {
             plugin: require('hapi-authorization'),
             options: {
-                roles: ['ADMIN', 'USER']
+                roles: ['Admin', 'User']
             }
         }
     ]

@@ -4,7 +4,7 @@ const create = require('../../Validation/Profile/add_profile_Joi')
 
 module.exports = {
     method: 'POST',
-    path: '/profile',
+    path: '/profile/create',
     options: {
         validate: create,
         auth: false,

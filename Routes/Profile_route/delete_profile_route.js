@@ -6,7 +6,7 @@ const { validate } = require("../../Schema/Profile");
 
 module.exports = {
     method: 'DELETE',
-    path: '/profile/{id}',
+    path: '/profile/delete/{id}',
     handler: user_delete.delete_user,
     options: {
         validate: delete_validate,

@@ -105,19 +105,21 @@ const init = async () => {
 
     await server.register(plugins);
 
-
-
-
+    // Profile
     server.route(require('./Routes/Profile_route/add_profile_route'));
     server.route(require('./Routes/Profile_route/delete_profile_route'));
     server.route(require('./Routes/Profile_route/update_profile_route'));
     server.route(require('./Routes/Profile_route/read_profile_route'));
     server.route(require('./Routes/Profile_route/readone_profile_route'));
-    server.route(require('./Routes/Login_User_route'));
-    server.route(require('./Routes/Create_User.route'));
+    // User
+    server.route(require('./Routes/User/Login_User_route'));
+    server.route(require('./Routes/User/Create_User.route'));
+    // Task
     server.route(require('./Routes/Task/createTask'));
     server.route(require('./Routes/Task/updateTask_route'));
     server.route(require('./Routes/Task/getAllTask_route'));
+    server.route(require('./Routes/Task/deleteTask_route'));
+    server.route(require('./Routes/Task/getOneTask_route'));
 
    await server.start();
     console.log('Server is running on ', server.info.uri);

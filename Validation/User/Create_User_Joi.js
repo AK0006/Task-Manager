@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { payload } = require('./Profile/add_profile_Joi');
+const { payload } = require('../Profile/add_profile_Joi');
 
 module.exports = {
     payload: Joi.object({

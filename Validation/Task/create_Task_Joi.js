@@ -8,8 +8,8 @@ module.exports ={
         Status: Joi.string().max(100).required(),
         CreatedBy: Joi.string().max(20).optional(),
         CreatedBy_id: Joi.string().optional(),
-        AssignedTo: Joi.array().items(Joi.string().required()),
-        AssignedTo_id: Joi.string().optional(),
+        AssignedTo: Joi.string().required(),
+        AssignedTo_id: Joi.array().items(Joi.string()),
         startDate: Joi.date().iso().required(),
         endDate: Joi.date().iso().min(Joi.ref('startDate')).required()
     })

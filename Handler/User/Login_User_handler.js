@@ -1,10 +1,10 @@
-const User = require('../Schema/User');
+const User = require('../../Schema/User');
 const Boom = require('boom');
 const Bcrypt = require('bcrypt');
-const Profile = require('../Schema/Profile');
+const Profile = require('../../Schema/Profile');
 const { valid } = require('joi');
-const create_token = require('../util/config');
-const redis = require('../util/redis')
+const create_token = require('../../util/config');
+const redis = require('../../util/redis')
 
 exports.login_User = async (request, h) => {
     

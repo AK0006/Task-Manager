@@ -1,6 +1,6 @@
 const { options } = require('joi');
 const getAllTask_handler = require('../../Handler/Task/getAllTask');
-const { method, handler } = require('../Login_User_route');
+const { method, handler } = require('../User/Login_User_route');
 
 module.exports = {
     method: 'GET',

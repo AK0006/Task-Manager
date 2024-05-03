@@ -9,7 +9,7 @@ const taskSchema = new mongoose.Schema({
     CreatedBy: {type: String, required: true},
     CreatedBy_id: {type: String, required: true},
     AssignedTo: {type: String, required: true},
-    AssignedTo_id: {type: String, required: true},
+    AssignedTo_id: [String],
     startDate: {type: Date, default: Date.now()},
     endDate: {type: Date, default: Date.now()}
 }, {timestamps: {

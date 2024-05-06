@@ -1,8 +1,6 @@
 const User = require('../../Schema/User');
 const Boom = require('boom');
 const Bcrypt = require('bcrypt');
-const Profile = require('../../Schema/Profile');
-const { valid } = require('joi');
 const create_token = require('../../util/config');
 const redis = require('../../util/redis')
 
@@ -16,6 +14,7 @@ exports.login_User = async (request, h) => {
             return Boom.badRequest("User not found");
         }
         const passwordMatch = await Bcrypt.compare(password, user.password)
+        // console.log(passwordMatch);
         if(!passwordMatch){
             return Boom.badRequest("Invalid Password")
         }

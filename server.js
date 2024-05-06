@@ -53,7 +53,6 @@ const init = async () => {
 
     server.auth.default('jwt');
 
-
     const swaggerOptions = {
         info: {
             title:'Task Manager',
@@ -67,7 +66,7 @@ const init = async () => {
                 'x-keyPrefix': 'Bearer'
             }
         },
-        security: [{ Bearer: [] }],
+        security: [{ 'Bearer': [] }],
         schemes: ['http', 'https']
     }
 

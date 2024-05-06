@@ -8,6 +8,7 @@ module.exports = {
     handler: get_handler.getOneComment,
     options: {
         validate: get_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         auth: 'jwt',
         tags: ['api']
     }

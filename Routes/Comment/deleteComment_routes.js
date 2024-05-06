@@ -7,6 +7,7 @@ module.exports = {
     handler: deleteComment_handler.delteComment,
     options: {
         validate: deleteComment_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin']}},
         auth: 'jwt',
         tags: ['api']
     }

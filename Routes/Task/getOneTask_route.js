@@ -8,6 +8,7 @@ module.exports = {
     handler: getOneTask_hanlder.getOne_task,
     options: {
         validate: getOneTask_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         auth: 'jwt',
         tags: ['api']
     }

@@ -9,6 +9,7 @@ module.exports = {
     path: '/task/delete/{id}',
     options: {
         validate: removeTask_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin']}},
         auth: 'jwt',
         tags: ['api']
     },

@@ -7,7 +7,7 @@ const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const mongodb = require('mongodb');
 const { method } = require('./Routes/Profile_route/add_profile_route');
-const { version } = require('joi');
+const { version, options } = require('joi');
 const pack = require('./package.json');
 const Jwt = require('@hapi/jwt');
 const jwt_privte_key =  require('./util/config');
@@ -65,6 +65,10 @@ const init = async () => {
         path: '/',
         handler: (request, h) => {
             return "Welcome"
+        },
+        options: {
+            auth: false,
+            // tags: ['api']
         }
     });
 

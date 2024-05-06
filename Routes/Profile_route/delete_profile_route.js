@@ -10,6 +10,7 @@ module.exports = {
     handler: user_delete.delete_user,
     options: {
         validate: delete_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         auth: 'jwt',
         tags: ['api']
     }

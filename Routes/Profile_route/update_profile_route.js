@@ -7,6 +7,7 @@ module.exports = {
     path: '/profile/update/{id}',
     options: {
         validate: vald_user,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         auth: 'jwt',
         tags: ['api']
     },

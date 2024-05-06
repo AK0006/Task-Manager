@@ -7,6 +7,7 @@ module.exports = {
     handler: getComment_handler.getComment,
     options: {
         auth: 'jwt',
+        plugins: {'hapiAuthorization': {roles: ['Admin']}},
         tags: ['api']
     }
 }

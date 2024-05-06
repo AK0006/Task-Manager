@@ -9,6 +9,7 @@ module.exports = {
     path: '/task/create',
     options: {
         auth: 'jwt',
+        plugins: {'hapiAuthorization': {roles: ['Admin']}},
         tags: ['api'],
         validate: taskCreate
     },

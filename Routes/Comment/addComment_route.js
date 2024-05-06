@@ -8,6 +8,7 @@ module.exports ={
     handler: addComment_handler.addComment,
     options: {
         validate: addComment_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         tags: ['api']
     }
 }

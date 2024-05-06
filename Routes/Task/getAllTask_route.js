@@ -8,6 +8,7 @@ module.exports = {
     handler: getAllTask_handler.getAllTask,
     options: {
         auth: 'jwt',
+        plugins: {'hapiAuthorization': {roles: ['Admin']}},
         tags: ['api']
     }
 }

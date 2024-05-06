@@ -8,6 +8,7 @@ module.exports = {
     handler: updateComment_handler.updateComment,
     options: {
         validate: updateComment_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         auth: false,
         tags: ['api']
     }

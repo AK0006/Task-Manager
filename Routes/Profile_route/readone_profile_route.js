@@ -8,6 +8,7 @@ module.exports = {
     handler: readOne.getOne,
     options: {
         validate: readValidation,
+        plugins: {'hapiAuthorization': {roles: ['Admin', 'User']}},
         auth: 'jwt',
         tags: ['api']
     }

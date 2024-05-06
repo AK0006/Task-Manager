@@ -8,6 +8,7 @@ module.exports = {
     handler: update_handler.Update_task,
     options: {
         validate: update_validate,
+        plugins: {'hapiAuthorization': {roles: ['Admin']}},
         auth: 'jwt',
         tags: ['api']
     }

@@ -25,7 +25,7 @@ exports.create_User = async (request, h) => {
     
     const salt = await Bcrypt.genSalt(10);
     const hashe = await Bcrypt.hash(password.toString(), salt);
-    const userData = Object.assign({}, request.payload, {password: hashe, Username});
+    const userData = Object.assign(request.payload, {password: hashe, Username});
     const user = await User.create(userData);
     // console.log(user);
     return user

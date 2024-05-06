@@ -31,7 +31,6 @@ exports.login_User = async (request, h) => {
         const token = await create_token(session);
         console.log(token);
 
-        // console.log(session.id);
         const redis_store = await redis.set(session.id, JSON.stringify(session));
         // console.log(redis_store);
 

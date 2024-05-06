@@ -5,15 +5,9 @@ const mongoose = require('mongoose');
 const HapiSwagger = require('hapi-swagger');
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
-const mongodb = require('mongodb');
-const { method } = require('./Routes/Profile_route/add_profile_route');
-const { version, options } = require('joi');
 const pack = require('./package.json');
 const Jwt = require('@hapi/jwt');
 const jwt_privte_key =  require('./util/config');
-const { verify } = require('jsonwebtoken');
-const { validate } = require('./Schema/Profile');
-const User = require('./Schema/User');
 const redis = require('./util/redis');
 const profile = require('./Schema/Profile');
 
@@ -28,9 +22,8 @@ const init = async () => {
 
     const validate = async (artifacts, request, h, callback) => {
         try {
-            const payload = artifacts.decoded.payload;
-            // console.log(payload);
             const redis_reply = await redis.get(artifacts.decoded.payload.id)
+            // console.log(redis_reply);
             if(!redis_reply){
                 return {isValid: false}
             }
@@ -60,17 +53,6 @@ const init = async () => {
 
     server.auth.default('jwt');
 
-    server.route  ({
-        method: 'GET',
-        path: '/',
-        handler: (request, h) => {
-            return "Welcome"
-        },
-        options: {
-            auth: false,
-            // tags: ['api']
-        }
-    });
 
     const swaggerOptions = {
         info: {
@@ -105,9 +87,11 @@ const init = async () => {
                 roles: ['Admin', 'User']
             }
         }
-    ]
-
+    ];
     await server.register(plugins);
+
+    await server.start();
+    console.log('Server is running on ', server.info.uri);
 
     // Profile
     server.route(require('./Routes/Profile_route/add_profile_route'));
@@ -131,8 +115,6 @@ const init = async () => {
     server.route(require('./Routes/Comment/getOneComment_route'));
     server.route(require('./Routes/Comment/getComment_route'));
 
-   await server.start();
-    console.log('Server is running on ', server.info.uri);
 }
 init();
 

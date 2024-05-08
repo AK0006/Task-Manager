@@ -9,7 +9,7 @@ const pack = require('./package.json');
 const Jwt = require('@hapi/jwt');
 const jwt_privte_key =  require('./util/config');
 const redis = require('./util/redis');
-const profile = require('./Schema/Profile');
+const profile = require('./Profile/Schema/Profile');
 
 
 mongoose.connect("mongodb://localhost/Task_Manager");
@@ -93,26 +93,26 @@ const init = async () => {
     console.log('Server is running on ', server.info.uri);
 
     // Profile
-    server.route(require('./Routes/Profile_route/add_profile_route'));
-    server.route(require('./Routes/Profile_route/delete_profile_route'));
-    server.route(require('./Routes/Profile_route/update_profile_route'));
-    server.route(require('./Routes/Profile_route/read_profile_route'));
-    server.route(require('./Routes/Profile_route/readone_profile_route'));
+    server.route(require('./Profile/Routes/add_profile_route'));
+    server.route(require('./Profile/Routes/delete_profile_route'));
+    server.route(require('./Profile/Routes/update_profile_route'));
+    server.route(require('./Profile/Routes/read_profile_route'));
+    server.route(require('./Profile/Routes/readone_profile_route'));
     // User
-    server.route(require('./Routes/User/Login_User_route'));
-    server.route(require('./Routes/User/Create_User.route'));
+    server.route(require('./User/Routes/Login_User_route'));
+    server.route(require('./User/Routes/Create_User.route'));
     // Task
-    server.route(require('./Routes/Task/createTask'));
-    server.route(require('./Routes/Task/updateTask_route'));
-    server.route(require('./Routes/Task/getAllTask_route'));
-    server.route(require('./Routes/Task/deleteTask_route'));
-    server.route(require('./Routes/Task/getOneTask_route'));
+    server.route(require('./Task/Routes/createTask'));
+    server.route(require('./Task/Routes/updateTask_route'));
+    server.route(require('./Task/Routes/getAllTask_route'));
+    server.route(require('./Task/Routes/deleteTask_route'));
+    server.route(require('./Task/Routes/getOneTask_route'));
     //Comment
-    server.route(require('./Routes/Comment/addComment_route'));
-    server.route(require('./Routes/Comment/updateComment_route'));
-    server.route(require('./Routes/Comment/deleteComment_routes'));
-    server.route(require('./Routes/Comment/getOneComment_route'));
-    server.route(require('./Routes/Comment/getComment_route'));
+    server.route(require('./Comment/Routes/addComment_route'));
+    server.route(require('./Comment/Routes/updateComment_route'));
+    server.route(require('./Comment/Routes/deleteComment_routes'));
+    server.route(require('./Comment/Routes/getOneComment_route'));
+    server.route(require('./Comment/Routes/getComment_route'));
 
 }
 init();

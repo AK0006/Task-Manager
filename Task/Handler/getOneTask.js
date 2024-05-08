@@ -1,7 +1,9 @@
 const task = require('../Schema/Task');
-const comment = require('../../Comment/Schema/Comment')
+const comment = require('../../Comment/Schema/Comment');
+
 
 exports.getOne_task = async (request, h) => {
+    console.log(request);
     try {
         const id = request.params.id;
         const payload = request.payload;

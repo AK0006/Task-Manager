@@ -89,6 +89,8 @@ const init = async () => {
     ];
     await server.register(plugins);
 
+    
+
     await server.start();
     console.log('Server is running on ', server.info.uri);
 
@@ -101,6 +103,7 @@ const init = async () => {
     // User
     server.route(require('./User/Routes/Login_User_route'));
     server.route(require('./User/Routes/Create_User.route'));
+    server.route(require('./User/Routes/delete'));
     // Task
     server.route(require('./Task/Routes/createTask'));
     server.route(require('./Task/Routes/updateTask_route'));
@@ -113,7 +116,6 @@ const init = async () => {
     server.route(require('./Comment/Routes/deleteComment_routes'));
     server.route(require('./Comment/Routes/getOneComment_route'));
     server.route(require('./Comment/Routes/getComment_route'));
-
 }
 init();
 

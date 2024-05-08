@@ -104,6 +104,7 @@ const init = async () => {
     server.route(require('./User/Routes/Login_User_route'));
     server.route(require('./User/Routes/Create_User.route'));
     server.route(require('./User/Routes/delete'));
+    server.route(require('./User/Routes/update'));
     // Task
     server.route(require('./Task/Routes/createTask'));
     server.route(require('./Task/Routes/updateTask_route'));

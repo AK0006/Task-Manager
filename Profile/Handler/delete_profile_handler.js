@@ -6,6 +6,7 @@ exports.delete_user = async (request, h) => {
         const deleteUser = await User.findOneAndDelete({_id: id});
         return deleteUser;
     } catch (error) {
+        console.log(error);
         return "Unable to find the params"
     }
 }

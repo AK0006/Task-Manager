@@ -79,7 +79,7 @@ const init = async () => {
         }
     ]);
 
-    let plugins = [
+    const plugins = [
         {
             plugin: require('hapi-authorization'),
             options: {

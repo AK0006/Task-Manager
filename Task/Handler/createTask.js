@@ -11,10 +11,6 @@ module.exports = async (request, h) => {
         const name = request.auth.credentials.user.Username;
         const created_id = request.auth.credentials.profile._id;
 
-
-        const _id = request.payload.AssignedTo_id;
-        const find = await Profile.findOne({_id}, request.payload.Profile_id);
-
         const data = Object.assign(request.payload, {CreatedBy: name, CreatedBy_id: created_id});
         const result = await Task.create(data);
         return result;

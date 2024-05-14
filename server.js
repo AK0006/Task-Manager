@@ -21,6 +21,7 @@ const init = async () => {
     });
 
     const validate = async (artifacts, request, h, callback) => {
+        console.log(artifacts.decoded.payload);
         try {
             const redis_reply = await redis.get(artifacts.decoded.payload.id)
             // console.log(redis_reply);
@@ -40,7 +41,8 @@ const init = async () => {
                 return {isValid: false}
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return error
         }
     }
 

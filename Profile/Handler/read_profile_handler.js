@@ -7,7 +7,6 @@ const get_all= async (request, h) => {
                 // console.log(readAll);
                 return readAll;
         } catch (error) {
-                console.log(error);
                 return error;
         }
 }

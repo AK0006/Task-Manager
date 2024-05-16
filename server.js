@@ -21,7 +21,7 @@ const init = async () => {
     });
 
     const validate = async (artifacts, request, h, callback) => {
-        console.log(artifacts.decoded.payload);
+        // console.log(artifacts.decoded.payload);
         try {
             const redis_reply = await redis.get(artifacts.decoded.payload.id)
             // console.log(redis_reply);
@@ -72,6 +72,7 @@ const init = async () => {
         schemes: ['http', 'https']
     }
 
+
     await server.register([
         Inert,
         Vision,
@@ -91,35 +92,26 @@ const init = async () => {
     ];
     await server.register(plugins);
 
+
     
 
     await server.start();
-    console.log('Server is running on ', server.info.uri);
+    console.log('Server is running on %s', server.info.uri);
 
-    // Profile
-    server.route(require('./Profile/Routes/add_profile_route'));
-    server.route(require('./Profile/Routes/delete_profile_route'));
-    server.route(require('./Profile/Routes/update_profile_route'));
-    server.route(require('./Profile/Routes/read_profile_route'));
-    server.route(require('./Profile/Routes/readone_profile_route'));
-    // User
-    server.route(require('./User/Routes/Login_User_route'));
-    server.route(require('./User/Routes/Create_User.route'));
-    server.route(require('./User/Routes/delete'));
-    server.route(require('./User/Routes/update'));
-    server.route(require('./User/Routes/getUser'));
-    // Task
-    server.route(require('./Task/Routes/createTask'));
-    server.route(require('./Task/Routes/updateTask_route'));
-    server.route(require('./Task/Routes/getAllTask_route'));
-    server.route(require('./Task/Routes/deleteTask_route'));
-    server.route(require('./Task/Routes/getOneTask_route'));
-    //Comment
-    server.route(require('./Comment/Routes/addComment_route'));
-    server.route(require('./Comment/Routes/updateComment_route'));
-    server.route(require('./Comment/Routes/deleteComment_routes'));
-    server.route(require('./Comment/Routes/getOneComment_route'));
-    server.route(require('./Comment/Routes/getComment_route'));
+    server.register([
+        {
+            plugin: require('./User/index')
+        },
+        {
+            plugin: require('./Comment/index')
+        },
+        {
+            plugin: require('./Profile/index') 
+        },
+        {
+            plugin: require('./Task/index')
+        }
+    ]);
 }
 init();
 

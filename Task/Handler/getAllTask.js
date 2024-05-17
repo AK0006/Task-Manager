@@ -5,8 +5,12 @@ const { getOne } = require('../../Profile/Handler/readone_profile_handler');
 exports.getAllTask = async (request, h) => {
     try {
         const get_task = await Task.find();
-        return get_task;
+        return {
+            statuscode: 200,
+            message: "get all task",
+            data: get_task
+        };
     } catch (error) {
-        return error
+        throw error
     }
 }

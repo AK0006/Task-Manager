@@ -12,10 +12,10 @@ exports.getOne_task = async (request, h) => {
         console.log(result);
         return {
             statusCode: 200,
-            message: "task and comment for the task",
+            message: "get task and comment for the task",
             data: result
         };
     } catch (error) {
-        return Boom.badRequest(error);
+        throw error;
     }
 }

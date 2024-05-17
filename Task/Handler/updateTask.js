@@ -5,7 +5,11 @@ exports.Update_task = (request, h) => {
         const id = request.params.id;
         const payload = request.payload;
         const updateTask = Task.findOneAndUpdate({_id: id}, payload);
-        return updateTask;
+        return {
+            statuscode: 200,
+            message: "find and update",
+            data: updateTask
+        };
     } catch (error) {
         return error
     }

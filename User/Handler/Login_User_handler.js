@@ -21,7 +21,6 @@ exports.login_User = async (request, h) => {
         // console.log(user);
         delete user.password;
         // console.log('Object after deleting',user);
-        
         const session = {
             valid: true,
             id: Math.floor(Math.random() * 10000).toString(),
@@ -29,7 +28,6 @@ exports.login_User = async (request, h) => {
         }
         const token = await create_token(session);
         console.log(token);
-
         const redis_store = await redis.set(session.id, JSON.stringify(session));
         // console.log(redis_store);
 
@@ -42,7 +40,6 @@ exports.login_User = async (request, h) => {
             }
         };
     } catch (error) {
-        console.log(error);
-        return error;
+        return Boom.badRequest(error);
     }
 }

@@ -6,10 +6,14 @@ exports.plugin = {
     name: 'comment',
     version: '1.0.0',
     register: (server, options) => {
+        // Routes
         server.route(require('./Routes/addComment_route'));
         server.route(require('./Routes/deleteComment_routes'));
         server.route(require('./Routes/getComment_route'));
         server.route(require('./Routes/getOneComment_route'));
         server.route(require('./Routes/updateComment_route'));
+
+        // Methods
+        server.method(require('./Methods/search'));
     }
 };

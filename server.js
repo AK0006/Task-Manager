@@ -68,8 +68,8 @@ const init = async () => {
                 'x-keyPrefix': 'Bearer'
             }
         },
-        security: [{ 'Bearer': [] }],
-        schemes: ['http', 'https']
+        security: [{ Bearer: [] }],
+        schemes: ["http", "https"]
     }
 
 

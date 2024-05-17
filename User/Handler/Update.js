@@ -5,9 +5,12 @@ exports.updateUser = async (request, h) => {
         const id = request.params.id;
         const payload = request.payload
         const user_Update = await user.findOneAndUpdate({_id: id}, payload);
-        return user_Update
+        return {
+            statuscode: 200,
+            message: "find and update",
+            data: user_Update
+        };
     } catch (error) {
-        console.log(error);
-        return error;
+        throw error;
     }
 }

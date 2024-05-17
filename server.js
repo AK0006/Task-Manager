@@ -45,7 +45,6 @@ const init = async () => {
             return error
         }
     }
-
     await server.register(Jwt);
     server.auth.strategy('jwt', 'jwt', {
         keys: jwt_privte_key,
@@ -71,8 +70,6 @@ const init = async () => {
         security: [{ Bearer: [] }],
         schemes: ["http", "https"]
     }
-
-
     await server.register([
         Inert,
         Vision,
@@ -91,10 +88,6 @@ const init = async () => {
         }
     ];
     await server.register(plugins);
-
-
-    
-
     await server.start();
     console.log('Server is running on %s', server.info.uri);
 

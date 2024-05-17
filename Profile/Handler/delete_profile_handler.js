@@ -4,9 +4,12 @@ exports.delete_user = async (request, h) => {
     try {
         const id = request.params.id;
         const deleteUser = await User.findOneAndDelete({_id: id});
-        return deleteUser;
+        return {
+            statuscode: 200,
+            message: "findById and delete",
+            data: deleteUser
+        };
     } catch (error) {
-        console.log(error);
-        return "Unable to find the params"
+        throw error;
     }
 }

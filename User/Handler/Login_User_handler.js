@@ -29,8 +29,6 @@ exports.login_User = async (request, h) => {
         const token = await create_token(session);
         console.log(token);
         const redis_store = await redis.set(session.id, JSON.stringify(session));
-        // console.log(redis_store);
-
         return {
             statucode: 200,
             message: "Logged In",
@@ -40,6 +38,6 @@ exports.login_User = async (request, h) => {
             }
         };
     } catch (error) {
-        return Boom.badRequest(error);
+        throw error;
     }
 }

@@ -1,11 +1,11 @@
 const { options } = require('joi');
-const read = require('../Handler/read_profile_handler');
+const get = require('../Handler/read_profile_handler');
 
 
 module.exports = {
     method: 'GET',
     path: '/profile/allProfiles',
-    handler: read,
+    handler: get.get_all,
     options: {
         plugins: {'hapiAuthorization': {roles: ['Admin']}},
         auth: 'jwt',

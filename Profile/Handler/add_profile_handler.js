@@ -6,17 +6,19 @@ const { object } = require("joi");
 
 
 exports.create_user = async (request, h) => {
-    const { Password,Createdat, ...rest } = request.payload;
+    const { Password, Createdat, ...rest } = request.payload;
 
     try {
         const salt = await Bcrypt.genSalt(10);
         const hashPassword = await Bcrypt.hash(Password, salt);
         const data = Object.assign(rest, Createdat, {Password: hashPassword});
-        // console.log(data);
         const result = await Profile.create(data);
-        console.log(result);
-        return h.response(result);
+        return {
+            statuscode: 200,
+            message: "profile created",
+            data: result
+        };
     } catch (error) {
-        return "Unable to fetch the data";
+        throw error;
     }
 }

@@ -1,14 +1,16 @@
 const Profile = require('../Schema/Profile');
 
-const get_all= async (request, h) => {
+exports.get_all = async (request, h) => {
+
         console.log(request.auth.credentials.user.role);
         try {
                 const readAll = await Profile.find();
-                // console.log(readAll);
-                return readAll;
+                return {
+                        statuscode: 200,
+                        message: "get all profile",
+                        data: readAll
+                };
         } catch (error) {
-                return error;
+                throw error;
         }
 }
-
-module.exports = get_all;

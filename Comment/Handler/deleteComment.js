@@ -4,9 +4,11 @@ exports.delteComment = async (request, h) => {
     try {
         const id = request.params.id;
         const delete_comment = await comment.findOneAndDelete({_id: id}, request.payload);
-        console.log(delete_comment);
-        return delete_comment;
+        return {
+            statuscode: 200,
+            message: "comment deleted"
+        };
     } catch (error) {
-        return error;
+        throw error;
     }
 }

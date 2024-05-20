@@ -6,7 +6,9 @@ const Boom = require('boom');
 exports.getOne_task = async (request, h) => {
     try {
         const id = request.params.id;
-        const get_comments = await request.server.methods.get_by_id(id);        
+        const get_comments = await request.server.methods.get_by_id(id);
+        // const comment = await get_comments.map(item => item.Comment, item.Sender_id);
+        // console.log(comment);
         const getTask_One = await Task.findOne({_id: id}, request.payload).lean();
         const result = Object.assign({}, getTask_One, get_comments);
         console.log(result);

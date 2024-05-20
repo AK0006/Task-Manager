@@ -1,7 +1,6 @@
 const Task = require('../Schema/Task');
 
 module.exports = async (request, h) => {
-    // console.log(request.auth.credentials);
     try {
         const name = request.auth.credentials.user.Username;
         const created_id = request.auth.credentials.profile._id;

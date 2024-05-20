@@ -1,5 +1,5 @@
 const comment = require('../Schema/Comment');
-const server =  require('../../server');
+
 
 module.exports = {
     name: "get_by_id",

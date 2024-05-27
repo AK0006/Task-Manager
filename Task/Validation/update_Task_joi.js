@@ -6,9 +6,9 @@ module.exports = {
         id: Joi.string().required()
 }),
 payload: Joi.object({
-    Title: Joi.string().max(100).required(),
-    Description: Joi.string().max(100).required(),
-    Status: Joi.string().max(100).required(),
+    Title: Joi.string().max(100).optional(),
+    Description: Joi.string().max(100).optional(),
+    Status: Joi.string().max(100).optional(),
     CreatedBy: Joi.string().max(20).optional(),
     CreatedBy_id: Joi.string().optional(),
     AssignedTo: Joi.string().optional(),

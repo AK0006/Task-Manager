@@ -5,7 +5,7 @@ module.exports = {
     name: "get_by_id",
     method: async(task_id) => {
         try {
-            const commentById = await comment.find({Task_id: task_id}).lean();
+            const commentById = await comment.find({Task_id: task_id});
             return commentById;
         } catch (error) {
             throw error;

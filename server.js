@@ -103,6 +103,9 @@ const init = async () => {
         },
         {
             plugin: require('./Task/index')
+        },
+        {
+            plugin: require('./Test/index')
         }
     ]);
 }

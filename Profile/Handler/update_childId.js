@@ -1,21 +1,18 @@
 const ProfileSchema = require('../Schema/Profile');
 const testSchema = require('../../Test/Schema/test');
-const { ProfilingLevel } = require('mongodb');
-const { internal } = require('boom');
 
 module.exports = async(request, h) => {
     try {
         const id = request.params.parentId;
         const childId = request.payload.test[0];
-        // console.log(childId);
 
         const profile = await ProfileSchema.findOne({_id: id}).lean();
 
         profile.test.forEach((item, index) => {
             if(item._id === childId._id){
-                console.log(item);
-                item.firstName = childId.firstName;
-                item.lastName = childId.lastName;
+                for(const key in childId){
+                    item[key] = childId[key]
+                }
             }
         });
         console.log(profile.test);
@@ -32,14 +29,3 @@ module.exports = async(request, h) => {
         throw error
     }
 }
-
-
-
-
-        // profile.test.forEach((item, index) => {
-        //     if(item._id === childId._id){
-        //         profile.test.splice(index, 1, update_childId)
-        //     }
-        // });
-
-        // console.log(profile);

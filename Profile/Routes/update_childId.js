@@ -3,7 +3,7 @@ const updateChildId_validation = require('../Validation/update_childId');
 
 module.exports = {
     method: 'PUT',
-    path: '/profile/parentID/{parentId}',
+    path: '/profile/updateChildId/{parentId}',
     handler: updateChildId_handler,
     options: {
         validate: updateChildId_validation,

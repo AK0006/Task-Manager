@@ -1,29 +1,36 @@
 const ProfileSchema = require('../Schema/Profile');
 const testSchema = require('../../Test/Schema/test');
+const { ObjectId } = require('bson');
 
 module.exports = async(request, h) => {
+    console.log(request);
     try {
         const id = request.params.parentId;
-        const childId = request.payload.test[0];
+        const testdata = request.payload.test;
+        console.log(testdata);
+        const childId = request.params.childId;
+        console.log(childId);
 
-        const profile = await ProfileSchema.findOne({_id: id}).lean();
-
-        profile.test.forEach((item, index) => {
-            if(item._id === childId._id){
-                for(const key in childId){
-                    item[key] = childId[key]
-                }
-            }
-        });
-        console.log(profile.test);
-
-        const update_childId = await testSchema.findOneAndUpdate({_id: childId._id}, {firstName: childId.firstName}, {returnOriginal: false});
+        // Update the testSchema
+        const update_childId = await testSchema.findOneAndUpdate({_id: childId}, {firstName: testdata.firstName, lastName: testdata.lastName}, {returnOriginal: false});
         // console.log(update_childId);
+    
+        // Update the profileSchema using testSchema value
+        const profile_update = await ProfileSchema.findOneAndUpdate(
+            {_id: id},
+            {"test.$[testEle]": update_childId},
+            {
+                arrayFilters: [{ "testEle._id": update_childId._id }],
+                returnOriginal: false
+            }
+        );
+        console.log(profile_update);
 
-        const profile_update = await ProfileSchema.findOneAndUpdate({_id: profile._id}, profile, {returnOriginal: false});
+
+        // console.log(profile_update.test._id);
         // console.log(profile_update);
         
-        return profile;
+        return profile_update;
     } catch (error) {
         console.log(error);
         throw error

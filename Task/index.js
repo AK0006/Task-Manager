@@ -11,5 +11,6 @@ exports.plugin = {
         server.route(require('./Routes/getAllTask_route'));
         server.route(require('./Routes/getOneTask_route'));
         server.route(require('./Routes/updateTask_route'));
+        server.route(require('./Routes/statusUpdate'));
     }
 }

@@ -9,6 +9,7 @@ module.exports = {
         Mobilenumber: Joi.number().min(10).optional(),
         Email: Joi.string(). email(). lowercase().optional(),
         Password: Joi.string().min(6).optional(),
-        test: Joi.array().items(Joi.object())
+        // test: Joi.array().items(Joi.object())
+        test: Joi.object()
     })
 }

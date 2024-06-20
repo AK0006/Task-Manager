@@ -106,6 +106,14 @@ const init = async () => {
         },
         {
             plugin: require('./Test/index')
+        },
+        {
+            plugin:require('./PO/index')
+        },
+        {
+            plugin: require('./CO/index')
+        },{
+            plugin: require('./cosAverage/index')
         }
     ]);
 }

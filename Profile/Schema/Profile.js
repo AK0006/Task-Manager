@@ -1,5 +1,3 @@
-const { number, types, required } = require('joi');
-const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({

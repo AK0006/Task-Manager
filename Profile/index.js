@@ -1,7 +1,5 @@
 'use strict'
 
-const { version } = require("joi")
-
 exports.plugin = {
     name: 'profile',
     version: '1.0.0',

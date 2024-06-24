@@ -3,6 +3,7 @@ const User = require('../Schema/User');
 const Bcrypt = require('bcrypt');
 const Profile = require('../../Profile/Schema/Profile');
 const { object } = require('joi');
+const { transporter } = require('../../server');
 
 exports.create_User = async (request, h) => {
     try {
@@ -28,12 +29,27 @@ exports.create_User = async (request, h) => {
         const hashe = await Bcrypt.hash(password.toString(), salt);
         const userData = Object.assign(request.payload, { password: hashe, Username });
         const user = await User.create(userData);
+
+        const sendMail = await transporter.sendMail({
+            from: 'aksteelshot99@gmail.com',
+            to: profileModel.Email,
+            subject: 'LOGIN CREDENTIALS',
+            text: `
+            Dear User,
+            Your account has been created successfully.
+            Here are your login details: 
+            User ID: ${Username}
+            Password: ${password}
+            Thank You`
+        });
+        // console.log(sendMail);
         return {
             statuscode: 200,
             message: "user created",
             data: user
         }
     } catch (error) {
+        console.log(error);
         throw error;
     }
 }

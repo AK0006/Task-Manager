@@ -1,6 +1,7 @@
 "use strict";   
 
 const Hapi = require('@hapi/hapi');
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const HapiSwagger = require('hapi-swagger');
 const Inert = require('@hapi/inert');
@@ -10,10 +11,18 @@ const Jwt = require('@hapi/jwt');
 const jwt_privte_key =  require('./util/config');
 const redis = require('./util/redis');
 const profile = require('./Profile/Schema/Profile');
-
+require('dotenv').config()
 
 mongoose.connect("mongodb://localhost/Task_Manager");
-
+exports.transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: 'aksteelshot99@gmail.com',
+        pass: process.env.PASSWORD
+    }
+});
 const init = async () => {
     const server = Hapi.Server({
         port: 3000,
@@ -112,10 +121,10 @@ const init = async () => {
         },
         {
             plugin: require('./CO/index')
-        },{
+        },
+        {
             plugin: require('./cosAverage/index')
         }
     ]);
 }
 init();
-

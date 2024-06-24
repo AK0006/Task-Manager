@@ -24,7 +24,7 @@ exports.login_User = async (request, h) => {
         const session = {
             valid: true,
             id: Math.floor(Math.random() * 10000).toString(),
-            user: user
+            // user: user
         }
         const token = await create_token(session);
         console.log(token);

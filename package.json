@@ -19,12 +19,14 @@
     "bcrypt": "^5.1.1",
     "boom": "^7.3.0",
     "bson": "^6.7.0",
+    "dotenv": "^16.4.5",
     "hapi-swagger": "^17.2.1",
     "joi": "^17.12.3",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
-    "nodemon": "^3.1.1",
+    "nodemailer": "^6.9.14",
+    "nodemon": "^3.1.4",
     "redis": "^4.6.13"
   },
   "devDependencies": {

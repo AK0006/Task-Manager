@@ -15,6 +15,7 @@ module.exports = async (request, h) => {
                 if(!totalWeight[key]) {
                     totalWeight[key] = 0;
                     count[key] = 0;
+                    // console.log(totalWeight);
                 }
                 totalWeight[key] += po.Weight;
                 count[key]++;

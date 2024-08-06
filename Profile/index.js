@@ -11,5 +11,6 @@ exports.plugin = {
         server.route(require('./Routes/update_profile_route'));
         server.route(require('./Routes/update_childId'));
         server.route(require('./Routes/add_childId'));
+        server.route(require('./Routes/getBy_ChildId'));
     }
 }

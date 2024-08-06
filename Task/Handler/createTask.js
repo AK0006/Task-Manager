@@ -1,3 +1,5 @@
+'use strict';
+
 const Task = require('../Schema/Task');
 
 module.exports = async (request, h) => {
@@ -13,6 +15,7 @@ module.exports = async (request, h) => {
             data: result
         };
     } catch (error) {
+        // console.error(error);
         throw error;
     }
 }

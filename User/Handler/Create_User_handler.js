@@ -1,8 +1,6 @@
-const { ReturnDocument } = require('mongodb');
 const User = require('../Schema/User');
 const Bcrypt = require('bcrypt');
 const Profile = require('../../Profile/Schema/Profile');
-const { object } = require('joi');
 const { transporter } = require('../../server');
 
 exports.create_User = async (request, h) => {

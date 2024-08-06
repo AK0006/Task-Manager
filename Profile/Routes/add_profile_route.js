@@ -1,5 +1,4 @@
 const addUser_Handler = require('../Handler/add_profile_handler');
-const { validate } = require('../Schema/Profile');
 const create = require('../Validation/add_profile_Joi')
 
 module.exports = {

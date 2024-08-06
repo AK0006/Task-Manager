@@ -1,6 +1,5 @@
 const ProfileSchema = require('../Schema/Profile');
 const testSchema = require('../../Test/Schema/test');
-const { ObjectId } = require('bson');
 
 module.exports = async(request, h) => {
     console.log(request);

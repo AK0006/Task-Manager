@@ -11,6 +11,7 @@ const Jwt = require('@hapi/jwt');
 const jwt_privte_key =  require('./util/config');
 const redis = require('./util/redis');
 const profile = require('./Profile/Schema/Profile');
+const { version } = require('joi');
 require('dotenv').config()
 
 mongoose.connect("mongodb://localhost/Task_Manager");
@@ -38,19 +39,20 @@ const init = async () => {
                 return {isValid: false}
             }
             const session = JSON.parse(redis_reply);
-            // console.log(session);
+            // console.log(session.user);
             if(session && session.valid){
                 const profileModel = await profile.findOne({_id: session.user.Profile_id})
                 // console.log(profileModel);
                 return {
                     isValid: true,
-                    credentials: {profile: profileModel, user: session.user, role: session.user.role}
+                    credentials: { profile: profileModel, user: session.user, role: session.user.role, valid: session.valid }
                 }
             }else {
+                // console.log("Not found");
                 return {isValid: false}
             }
         } catch (error) {
-            // console.log(error);
+            console.log(error);
             return error
         }
     }
@@ -63,6 +65,7 @@ const init = async () => {
 
     server.auth.default('jwt');
 
+    // Used it directly 
     const swaggerOptions = {
         info: {
             title:'Task Manager',
@@ -77,7 +80,7 @@ const init = async () => {
             }
         },
         security: [{ Bearer: [] }],
-        schemes: ["http", "https"]
+        schemes: [ "http", "https" ]
     }
     await server.register([
         Inert,
@@ -128,3 +131,13 @@ const init = async () => {
     ]);
 }
 init();
+
+
+        // const subjectsId_Name = new Map();
+        // subjectData.forEach(subject => {
+        //     subjectsId_Name.set(subject._id, subject.subject_Name)
+        // });
+        // console.log(subjectsId_Name);
+
+        
+        // subject_Name: subjectsId_Name.get(item.subject_id),

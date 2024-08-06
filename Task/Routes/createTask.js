@@ -1,7 +1,6 @@
-const { options } = require('joi');
+'use strict';
+
 const create_handler = require('../Handler/createTask');
-const { create, validate } = require('../../Profile/Schema/Profile');
-const { method, handler } = require('../../Profile/Routes/add_profile_route');
 const taskCreate = require('../Validation/create_Task_Joi')
 
 module.exports = {

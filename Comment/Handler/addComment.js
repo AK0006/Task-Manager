@@ -1,6 +1,7 @@
 const comment = require('../Schema/Comment');
 
 exports.addComment = async (request, h) => {
+    console.log(request.auth.credentials);
     try {
         const send_id = request.auth.credentials.profile._id;
         const comment_data = Object.assign({}, request.payload, {Sender_id: send_id});

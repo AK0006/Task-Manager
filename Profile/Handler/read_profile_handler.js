@@ -2,7 +2,7 @@ const Profile = require('../Schema/Profile');
 
 exports.get_all = async (request, h) => {
 
-        // console.log(request.auth.credentials.user.role);
+        // console.log(request.auth.credentials);
         try {
                 const readAll = await Profile.find();
                 return {
